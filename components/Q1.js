@@ -1,41 +1,21 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, Text, View,  } from 'react-native';
-import { Image } from 'react-native';
+
 import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body, Right, Title } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
+import { ScrollView, Image } from 'react-native';
 
-
-export default class Q1 extends Component {
-    constructor(props){
-        super(props);
-        this.satate= {
-            img : this.props.frontPage.png
-        }
-    }
-
+export default class Q1 extends React.Component {
     render()
    {
     return (
-        <List>
-                
-            <Tabs initialPage={0} onChangeTab={({ i, ref, from })=> this.setState({img: i})}>
-                <Tab Image source={require('../images/bkgrnd.gif')/>
-                <Tab Image source={require('../images/frontPage.png')}/>
-            </Tabs>
-            <ListItem >
-                <Body >
-                  <Text style={styles.middleText}>Choose Option</Text>
-                </Body>
-            </ListItem>
-            <Tabs initialPage={0} onChangeTab={({ i, ref, from })=> this.setState({option: i})}>
-                <Tab heading="Small"/>
-                <Tab heading="Large"/>
-            </Tabs>
-            <Button full danger onPress= {()=>this.myfunc()}>
-                <Text >Add</Text>
-            </Button>
-        </List>
+        <ScrollView>
+              <Image  source={require('../images/bkgrnd.gif')} 
+          style={{height: 700, width: null, flex: 9}}/>
+            <Image  source={require('../images/frontPage.png')} 
+          style={{height: 700, width: null, flex: 9}}/>
+        </ScrollView>
     );
   }
 }
-}
+
