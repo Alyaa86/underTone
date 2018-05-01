@@ -1,3 +1,4 @@
+/* Aziz: Clean up your import statements. Only import things that you're actually using */
 import React from 'react';
 import { ImageBackground, StyleSheet, Text, View, TextInput } from 'react-native';
 import { ScrollView, Image } from 'react-native';
@@ -17,10 +18,11 @@ export default class App extends React.Component {
     }
   render() {
     return (
-      <ImageBackground  source={require('../images/bkgrnd.gif')} 
+      <ImageBackground  source={require('../images/bkgrnd.gif')}
           style={{height: 700, width: null, flex: 9}}>
       <Container style={styles.container}>
 
+        {/* Aziz: Consider moving your header into its own component */}
         <Header>
           <Left/>
           <Body>
@@ -30,7 +32,7 @@ export default class App extends React.Component {
         </Header>
         <Content>
         <Text style={styles.bigWhite}> READY TO KNOW YOUR UNDERTONE?</Text>
-        
+
           <Form style={styles.form}>
             <Item stackedLabel >
               <Label>Write Your Name Here .. </Label>
@@ -41,14 +43,14 @@ export default class App extends React.Component {
               <Input style={styles.WhiteFont} />
             </Item>
           </Form>
- 
+
         <Button rounded info style={styles.button}>
             <Text style={styles.WhiteFont}>GO</Text>
           </Button>
-    
-         </Content>  
-        
-        
+
+         </Content>
+
+        {/* Aziz: same thing for the footer */}
         <Footer>
           <FooterTab>
             <Button>
@@ -89,20 +91,20 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 20,
-    
-    
-    
+
+
+
   },
   button:{
     flex: 1 ,
     position: 'absolute',
     bottom:-170,
-    left:250, 
+    left:250,
     width: 100,
     justifyContent: 'center',
     alignItems: 'center'
-    
-    
+
+
 
 
   }
