@@ -7,13 +7,13 @@ class questionStore {
                 {
                 a:{
                     name:'aaa',
-                    image:'aaa',
+                    image:'../images/thumbnail_black 10.jpg'
                     },
                 b:{
                     name:'bbb',
-                    image:'bbb',
+                    image:'../images/thumbnail_black 10.jpg',
                     },
-                  nextQuestion:1
+                  position:1
                 },
 
                 {
@@ -25,7 +25,7 @@ class questionStore {
                         name:'bb222',
                         image:'bb222',
                         },
-                      nextQuestion:2
+                      position:2
                 }   
             ]
         }
