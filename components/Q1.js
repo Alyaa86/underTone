@@ -13,7 +13,7 @@ export default class Q1 extends React.Component {
               <Image  source={require('../images/bkgrnd.gif')} 
           style={{height: 700, width: null, flex: 9}}/>
             <Image  source={require('../images/frontPage.png')} 
-          style={{height: 700, width: null, flex: 9}}/>
+          style={{height: 360, width: null, flex: 9}}/>
         </ScrollView>
     );
   }

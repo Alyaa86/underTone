@@ -15,27 +15,31 @@ export default class App extends React.Component {
     }
   render() {
     return (
-      <ImageBackground  source={require('../images/bkgrnd.gif')} 
-          style={{height: 700, width: null, flex: 9}}>
-      <Container style={styles.container}>
-        <Header>
-          <Left/>
-          <Body>
-            <Title>UNDERTONE</Title>
-          </Body>
-          <Right />
-        </Header>
-             <CardItem>
-              <Right>
-                <Button FULL transparent textStyle={{color: '#87838B'}}>
-                  <Text>START YOUR TEST NOW</Text>
-                </Button>
-              </Right>
-            </CardItem>
-          </Card>
-        </Content>
-      </Container>
-      </ImageBackground>
+      <ImageBackground  source={require('../images/bkgrnd.gif')}
+         style={{height: 700, width: null, flex: 9}}>
+     <Container style={styles.container}>
+       <Header>
+         <Left/>
+         <Body>
+           <Title>UNDERTONE</Title>
+         </Body>
+         <Right />
+       </Header>
+       <Content style={styles.Content}>
+         <Card style={{flex: 0}}>
+         <Q1/>
+            <CardItem>
+             <Right>
+               <Button FULL transparent textStyle={{color: '#87838B'}}>
+                 <Text>START YOUR TEST NOW</Text>
+
+               </Button>
+             </Right>
+           </CardItem>
+         </Card>
+       </Content>
+     </Container>
+     </ImageBackground>
     );
   }
 }
