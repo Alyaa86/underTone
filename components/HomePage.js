@@ -1,11 +1,12 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, Text, View, TextInput } from 'react-native';
 import { ScrollView, Image } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Left, Body, Right, Title , List, Tab, Tabs, Icon} from 'native-base';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Left, Body, Right, Title , List, Tab, Tabs, Icon, Drawer} from 'native-base';
 import { Footer, FooterTab, Form, Item, Input, Label } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { NativeRouter, Route, Link, Switch } from 'react-router-native'
 import Q1 from './Q1.js';
+import MySideBar from './SideBar.js';
 import questionStore from '../stores/questionsStore'
 
 
@@ -23,13 +24,22 @@ export default class App extends React.Component {
  }
 
   render() {
+    closeDrawer = () => {
+      this.drawer._root.close()
+    };
+    openDrawer = () => {
+      this.drawer._root.open()
+    }
     return (
+      <Drawer
+        ref={(ref) => { this.drawer = ref; }}
+        content={<MySideBar closeDrawer={closeDrawer.bind(this)}/>} >
       <ImageBackground  source={require('../images/bkgrnd.gif')} 
           style={{height: 700, width: null, flex: 9}}>
       <Container style={styles.container}>
         <Header style={styles.header}>
           <Left>
-            <Button transparent>
+            <Button transparent onPress={() => openDrawer()}>
               <Icon name="menu"/>
             </Button>
           </Left>
@@ -70,6 +80,7 @@ export default class App extends React.Component {
         </Footer>
       </Container>
       </ImageBackground>
+       </Drawer>
     );
   }
 }

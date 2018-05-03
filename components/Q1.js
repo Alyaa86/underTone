@@ -1,16 +1,20 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, Text, View, Alert } from 'react-native';
-
+import {RkButton} from 'react-native-ui-kitten';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body, Right, Title } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { ScrollView, Image} from 'react-native';
+import questionStore from '../stores/questionsStore'
+import { CheckBox } from 'react-native-elements'
+
 
 export default class Q1 extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            questionSet1: this.props.questionStore.questionSet1[0]
-        }
+            questionSet1: this.props.questionStore.questionSet1[0],
+            count : 0,
+        };
     }
 
 
@@ -19,10 +23,13 @@ export default class Q1 extends React.Component {
         this.setState({questionSet1:this.props.questionStore.questionSet1[nextQuestion]})
     }
 
-    _onPressButton() {
-    Alert.alert('You tapped the button!')
+  Increment()  {
+    this.setState({ count: this.state.count + 1 });
   }
-
+  Decrease() {
+    this.setState({ count: this.state.count - 1 });
+  }
+  // we want now to select only once and if remove selection the count decrease by one
 
     render()
    {
@@ -30,7 +37,7 @@ export default class Q1 extends React.Component {
         <Container style={styles.container}>
         <Header >
           <Left>
-            <Button transparent>
+            <Button transparent >
               <Icon name="arrow-back"/>
             </Button>
           </Left>
@@ -44,17 +51,14 @@ export default class Q1 extends React.Component {
           style={styles.quarterHeight}>
                 <View style={styles.quarterHeight}>
                     <View style={styles.buttonContainer}>
-                        <Button rounded style={styles.button}
-                            onPress={this._onPressButton}
-                            title="Press Me">
+                        <Button rounded  style={styles.button}
+                            onPress={()=>this.Increment()}>
                             <Text> {this.state.questionSet1.a.name}</Text>
+                            <Text>{ this.state.count }</Text>
                         </Button>
                     </View>
                     <View style={styles.buttonContainer}>
-                          <Button rounded style={styles.button}
-                            onPress={this._onPressButton}
-                            title="Press Me"
-                            color="#841584">
+                          <Button rounded style={styles.button}>
                             <Text> {this.state.questionSet1.b.name}</Text>
                             </Button>
                     </View>

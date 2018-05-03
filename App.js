@@ -13,7 +13,7 @@ export default class App extends React.Component {
       <NativeRouter>
       <Switch>
           <Route path="/Q1" render={ () => <Q1 questionStore={questionStore}/>} />
-          <HomePage />
+          <Route exact path= "/" render={ () => <HomePage questionStore={questionStore}/>} />
         </Switch>
       </NativeRouter>
       

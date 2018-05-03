@@ -26,7 +26,10 @@ class questionStore {
                         image:'bb222',
                         },
                       position:2
-                }   
+                }, 
+                {
+                    totalCount:0
+                }  
             ]
         }
     )

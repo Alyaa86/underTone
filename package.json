@@ -29,9 +29,12 @@
     "native-base": "^2.4.3",
     "react": "16.3.1",
     "react-native": "~0.55.2",
+    "react-native-elements": "^0.19.1",
     "react-native-fa-icons": "^3.0.1",
     "react-native-fontawesome": "^5.7.0",
     "react-native-multiple-choice": "^0.0.8",
+    "react-native-sidebar": "^0.3.0",
+    "react-native-ui-kitten": "^3.0.1",
     "react-router-native": "^4.2.0"
   }
 }
