@@ -11,7 +11,7 @@ import { CheckBox } from 'react-native-elements'
 export default class Q1 extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             questionSet1: this.props.questionStore.questionSet1[0],
             countA : 0,
             countB : 0,
@@ -22,8 +22,12 @@ export default class Q1 extends React.Component {
     nextButtonA(){
         const Question = this.state.questionSet1.position + 1;
         this.setState({
-            questionSet1:this.props.questionStore.questionSet1[Question], 
-            countA: this.state.countA + 1 
+            questionSet1:this.props.questionStore.questionSet1[Question],
+            /*
+            * Aziz: you can't use this.state inside this.setState
+            * Do the calculation outside setState.
+            */
+            countA: this.state.countA + 1
 
         })
     }
@@ -31,7 +35,7 @@ export default class Q1 extends React.Component {
     nextButtonB(){
         const Question = this.state.questionSet1.position + 1;
         this.setState({
-            questionSet1:this.props.questionStore.questionSet1[Question], 
+            questionSet1:this.props.questionStore.questionSet1[Question],
             countB: this.state.countB + 1
 
         })
@@ -39,19 +43,22 @@ export default class Q1 extends React.Component {
 
 
     backButton(){
+        /* Aziz: don't commit dead code */
         // const count = this.state.countA + this.state.countB ??
         const Question = this.state.questionSet1.position - 1;
         this.setState({
-            questionSet1:this.props.questionStore.questionSet1[Question], 
+            questionSet1:this.props.questionStore.questionSet1[Question],
             // count: this.state.count - 1
         })
     }
 
-    // how to redirect to home page if position < 0 
-    //  if she choose all B  we decreasing one A all the time when back .. must modify the function .. must be if a is choosen deacrease a 
+    // how to redirect to home page if position < 0
+    /* Aziz: how about conditionally rendering a <Redirect /> component? */
+    
+    //  if she choose all B  we decreasing one A all the time when back .. must modify the function .. must be if a is choosen deacrease a
     // ... this.state.position < 0 ? redirect to home page  ???
     // ... this.state.count === 0 ? this.state.count: stopfunction  ???
-  
+
 
     render()
    {
@@ -69,12 +76,12 @@ export default class Q1 extends React.Component {
           <Right />
         </Header>
              <Content>
-        <ImageBackground  source={require('../images/bkgrnd.gif')} 
+        <ImageBackground  source={require('../images/bkgrnd.gif')}
           style={styles.quarterHeight}>
                 <View style={styles.quarterHeight}>
                     <View style={styles.buttonContainer}>
                     <TouchableHighlight>
-                        <Button rounded  style={styles.button} 
+                        <Button rounded  style={styles.button}
                             onPress={()=>this.nextButtonA()}>
                             <Text> {this.state.questionSet1.a.name}</Text>
                             <Text>{this.state.countA}</Text>
@@ -88,13 +95,13 @@ export default class Q1 extends React.Component {
                             <Text>{this.state.countB}</Text>
                             </Button>
                     </View>
-                    
+
               </View>
               </ImageBackground>
 <View style={styles.threeQuarterHeight}>
             <ScrollView >
             <Image source={this.state.questionSet1.a.image}/>
-          <Image source={require('../images/frontPage.png')} 
+          <Image source={require('../images/frontPage.png')}
           style={{height: 200, width: null, flex: 9}}/>
           </ScrollView>
           </View>
@@ -120,15 +127,15 @@ const styles = StyleSheet.create({
    top:10,
    justifyContent: 'center',
   },
-  
+
   buttonContainer: {
     margin: 5,
     flexDirection: 'row',
     justifyContent: 'center',
-    
+
     margin: 20
 
-    
+
   },
   quarterHeight: {
     flex: .25,
@@ -141,4 +148,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   }
 });
-

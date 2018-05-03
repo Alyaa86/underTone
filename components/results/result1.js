@@ -1,3 +1,8 @@
+/*
+* Aziz: I'm not sure I understand what this file and
+* the files around it are supposed to be doing
+*/
+
 import React, { Component } from 'react';
 
 return (
@@ -9,6 +14,16 @@ return (
     <p>
       {(() => {
         switch (this.state.A) {
+          /*
+          * Aziz: Simplified Logic
+          *
+          * case A >= 8 : return "Dark Cool";
+          * case A >= 6 : return "Bright Cool";
+          * case A === 5:  return "Nutral";
+          * case A >= 3 : return "Soft Warm";
+          * case A >= 1 : return "Light Warm";
+          * case A === 0: ???
+          */
           case A === 10|| A === 9 || A === 8 : return "Dark Cool";
           case A === 7 || A === 6 : return "Bright Cool";
           case A === 5:  return "Nutral";
