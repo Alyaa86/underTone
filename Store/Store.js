@@ -1,3 +1,9 @@
+/*
+* Aziz: this file has a lot of errors
+* what is it supposed to be doing?
+* why is it not with the other stores?
+*/
+
 import { extendObservable } from "mobx";
 import thumbnail_skin 3.jpg from '../images.png';
 import thumbnail_skin 4.jpg from '../images.png';
@@ -32,10 +38,10 @@ import nutral spring.png from '../images.png';
 import nutral summer.png from '../images.png';
 import nutral winter.png from '../images.png';
 
-class myStore 
+class myStore
 	constructor) {
-		extendOservable(this, 
-		
+		extendOservable(this,
+
 			list = [
 
 		name: ' No redness in skin tone ',
@@ -45,7 +51,7 @@ class myStore
 		name: ' Redness in skin tone ',
 		image: thumbnail_skin 4.jpg,
 	,
-	
+
 		name: ' Yellow skin shade ',
 		image: thumbnail_skin 5.jpg,
 	},{
