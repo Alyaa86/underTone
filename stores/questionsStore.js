@@ -1,4 +1,6 @@
 import { extendObservable } from "mobx";
+import black from '../images/frontPage.png';
+
 
 class questionStore {
     constructor() {
@@ -7,13 +9,13 @@ class questionStore {
                 {
                 a:{
                     name:'aaa',
-                    image:'../images/thumbnail_black 10.jpg'
+                    image:black
                     },
                 b:{
                     name:'bbb',
                     image:'../images/thumbnail_black 10.jpg',
                     },
-                  position:1
+                  position:0
                 },
 
                 {
@@ -25,7 +27,7 @@ class questionStore {
                         name:'bb222',
                         image:'bb222',
                         },
-                      position:2
+                      position:1
                 }, 
                 {
                     totalCount:0

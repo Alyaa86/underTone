@@ -13,14 +13,22 @@ export default class Q1 extends React.Component {
         super(props);
         this.state = { 
             questionSet1: this.props.questionStore.questionSet1[0],
+            questionSet: this.props.questionStore.questionSet1,
+
             count : 0,
         };
     }
 
 
     nextButton(){
-        const nextQuestion = this.state.questionSet1.position;
-        this.setState({questionSet1:this.props.questionStore.questionSet1[nextQuestion]})
+        const Question = this.state.questionSet1.position + 1;
+        this.setState({questionSet1:this.props.questionStore.questionSet1[Question] , questionSet:this.props.questionStore.questionSet1[Question]})
+    }
+
+
+    backButton(){
+        const Question = this.state.questionSet1.position - 1;
+        this.setState({questionSet1:this.props.questionStore.questionSet1[Question] , questionSet:this.props.questionStore.questionSet1[Question] })
     }
 
   Increment()  {
@@ -37,7 +45,7 @@ export default class Q1 extends React.Component {
         <Container style={styles.container}>
         <Header >
           <Left>
-            <Button transparent >
+            <Button transparent onPress={()=>this.backButton()} >
               <Icon name="arrow-back"/>
             </Button>
           </Left>
@@ -69,8 +77,7 @@ export default class Q1 extends React.Component {
               </ImageBackground>
 <View style={styles.threeQuarterHeight}>
             <ScrollView >
-            <Image source={require('../images/frontPage.png')} 
-          style={{height: 300, width: null, }}/>
+            <Image source={this.state.questionSet1.a.image}/>
           <Image source={require('../images/frontPage.png')} 
           style={{height: 200, width: null, flex: 9}}/>
           </ScrollView>
