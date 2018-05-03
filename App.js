@@ -12,6 +12,7 @@ export default class App extends React.Component {
     return (
       <NativeRouter>
       <Switch>
+          <Route path="/HomePage" render={ () => <HomePage questionStore={questionStore}/>} />
           <Route path="/Q1" render={ () => <Q1 questionStore={questionStore}/>} />
           <Route exact path= "/" render={ () => <HomePage questionStore={questionStore}/>} />
         </Switch>

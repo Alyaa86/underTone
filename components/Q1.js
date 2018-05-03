@@ -1,11 +1,13 @@
 import React from 'react';
+import {  Link } from 'react-router-native';
 import { ImageBackground, StyleSheet, Text, View, Alert, TouchableHighlight } from 'react-native';
-import {RkButton} from 'react-native-ui-kitten';
+import { RkButton } from 'react-native-ui-kitten';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body, Right, Title } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { ScrollView, Image} from 'react-native';
 import questionStore from '../stores/questionsStore'
 import { CheckBox } from 'react-native-elements'
+import HomePage from './HomePage.js';
 
 
 export default class Q1 extends React.Component {
@@ -20,32 +22,36 @@ export default class Q1 extends React.Component {
 
 
     nextButtonA(){
+        const addCountA = this.state.countA + 1
         const Question = this.state.questionSet1.position + 1;
         this.setState({
             questionSet1:this.props.questionStore.questionSet1[Question], 
-            countA: this.state.countA + 1 
+            countA: addCountA 
 
         })
     }
 
     nextButtonB(){
+        const addCountB = this.state.countB + 1
         const Question = this.state.questionSet1.position + 1;
         this.setState({
             questionSet1:this.props.questionStore.questionSet1[Question], 
-            countB: this.state.countB + 1
+            countB: addCountB
 
         })
     }
 
 
-    backButton(){
-        // const count = this.state.countA + this.state.countB ??
-        const Question = this.state.questionSet1.position - 1;
-        this.setState({
-            questionSet1:this.props.questionStore.questionSet1[Question], 
+    // backButton(){
+        // const count = this.state.countA + this.state.countB ?? 
+        // const Question = this.state.questionSet1.position - 1;
+        // if (this.state.questionSet1.position < 0 ) 
+          // <Redire
+        // this.setState({
+            // questionSet1:this.props.questionStore.questionSet1[Question], 
             // count: this.state.count - 1
-        })
-    }
+        // })
+    // }
 
     // how to redirect to home page if position < 0 
     //  if she choose all B  we decreasing one A all the time when back .. must modify the function .. must be if a is choosen deacrease a 
@@ -59,9 +65,9 @@ export default class Q1 extends React.Component {
         <Container style={styles.container}>
         <Header >
           <Left>
-            <Button transparent onPress={()=>this.backButton()} >
+            <Link component={Button} transparent to='/HomePage' >
               <Icon name="arrow-back"/>
-            </Button>
+            </Link>
           </Left>
           <Body>
             <Text>UNDERTONE APP</Text>
