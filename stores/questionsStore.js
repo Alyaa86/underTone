@@ -29,9 +29,7 @@ class questionStore {
                         },
                       position:1
                 }, 
-                {
-                    totalCount:0
-                }  
+                 
             ]
         }
     )

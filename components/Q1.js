@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, Text, View, Alert } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, Alert, TouchableHighlight } from 'react-native';
 import {RkButton} from 'react-native-ui-kitten';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body, Right, Title } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
@@ -13,31 +13,45 @@ export default class Q1 extends React.Component {
         super(props);
         this.state = { 
             questionSet1: this.props.questionStore.questionSet1[0],
-            questionSet: this.props.questionStore.questionSet1,
-
-            count : 0,
+            countA : 0,
+            countB : 0,
         };
     }
 
 
-    nextButton(){
+    nextButtonA(){
         const Question = this.state.questionSet1.position + 1;
-        this.setState({questionSet1:this.props.questionStore.questionSet1[Question] , questionSet:this.props.questionStore.questionSet1[Question]})
+        this.setState({
+            questionSet1:this.props.questionStore.questionSet1[Question], 
+            countA: this.state.countA + 1 
+
+        })
+    }
+
+    nextButtonB(){
+        const Question = this.state.questionSet1.position + 1;
+        this.setState({
+            questionSet1:this.props.questionStore.questionSet1[Question], 
+            countB: this.state.countB + 1
+
+        })
     }
 
 
     backButton(){
+        // const count = this.state.countA + this.state.countB ??
         const Question = this.state.questionSet1.position - 1;
-        this.setState({questionSet1:this.props.questionStore.questionSet1[Question] , questionSet:this.props.questionStore.questionSet1[Question] })
+        this.setState({
+            questionSet1:this.props.questionStore.questionSet1[Question], 
+            // count: this.state.count - 1
+        })
     }
 
-  Increment()  {
-    this.setState({ count: this.state.count + 1 });
-  }
-  Decrease() {
-    this.setState({ count: this.state.count - 1 });
-  }
-  // we want now to select only once and if remove selection the count decrease by one
+    // how to redirect to home page if position < 0 
+    //  if she choose all B  we decreasing one A all the time when back .. must modify the function .. must be if a is choosen deacrease a 
+    // ... this.state.position < 0 ? redirect to home page  ???
+    // ... this.state.count === 0 ? this.state.count: stopfunction  ???
+  
 
     render()
    {
@@ -59,20 +73,22 @@ export default class Q1 extends React.Component {
           style={styles.quarterHeight}>
                 <View style={styles.quarterHeight}>
                     <View style={styles.buttonContainer}>
-                        <Button rounded  style={styles.button}
-                            onPress={()=>this.Increment()}>
+                    <TouchableHighlight>
+                        <Button rounded  style={styles.button} 
+                            onPress={()=>this.nextButtonA()}>
                             <Text> {this.state.questionSet1.a.name}</Text>
-                            <Text>{ this.state.count }</Text>
+                            <Text>{this.state.countA}</Text>
                         </Button>
+                    </TouchableHighlight>
                     </View>
                     <View style={styles.buttonContainer}>
-                          <Button rounded style={styles.button}>
+                          <Button rounded style={styles.button}
+                          onPress={()=>this.nextButtonB()}>
                             <Text> {this.state.questionSet1.b.name}</Text>
+                            <Text>{this.state.countB}</Text>
                             </Button>
                     </View>
-                    <Button rounded style={styles.goButton} onPress= {()=>this.nextButton()}> 
-                        <Text>Next</Text> 
-                    </Button>
+                    
               </View>
               </ImageBackground>
 <View style={styles.threeQuarterHeight}>
@@ -109,7 +125,8 @@ const styles = StyleSheet.create({
     margin: 5,
     flexDirection: 'row',
     justifyContent: 'center',
-    top:20
+    
+    margin: 20
 
     
   },
