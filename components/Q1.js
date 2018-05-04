@@ -113,10 +113,10 @@ export default class Q1 extends React.Component {
                     </View> 
               </View>
               <View style={styles.buttonContainer}>
-              <Button transparent style={styles.chooseText}><Text style={styles.WhiteFont}>choose what makes your skin glow</Text></Button>
+              <Button transparent style={styles.chooseText}><Text adjustsFontSizeToFit={true} style={styles.WhiteFont}>choose what makes your skin glow</Text></Button>
               </View>
               <View style={styles.buttonContainer}>
-              <Button transparent style={styles.chooseText}><Text style={styles.WhiteFont}> ← scroll to choose → </Text></Button>
+              <Button transparent style={styles.chooseText}><Text adjustsFontSizeToFit={true} style={styles.WhiteFont}> ← scroll to choose → </Text></Button>
               </View>
               </ImageBackground>
                 <View >

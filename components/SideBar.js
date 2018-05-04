@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     height: 80,
   },
   BodyText:{
+    flex:1,
     left:-70
   }
 });
