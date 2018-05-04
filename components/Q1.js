@@ -102,7 +102,6 @@ export default class Q1 extends React.Component {
                         <Button rounded  style={styles.button} 
                             onPress={()=>this.nextButtonA()}>
                             <Text style={styles.WhiteFont}> {this.state.questionSet1.A.name}</Text>
-                            <Text>{this.state.countA}</Text>
                         </Button>
                     
                     </View>
@@ -110,7 +109,6 @@ export default class Q1 extends React.Component {
                           <Button rounded style={styles.button}
                           onPress={()=>this.nextButtonB()}>
                             <Text style={styles.WhiteFont}> {this.state.questionSet1.B.name}</Text>
-                            <Text>{this.state.countB}</Text>
                             </Button>
                     </View> 
               </View>
@@ -139,6 +137,7 @@ export default class Q1 extends React.Component {
 }
 const styles = StyleSheet.create({
   goButton:{
+    flex:1,
     position: 'relative',
     width: 100,
     justifyContent: 'center',
@@ -148,6 +147,7 @@ const styles = StyleSheet.create({
     margin: 20
   },
   container: {
+   flex:1,
    top:10,
    justifyContent: 'center',
   },
@@ -160,6 +160,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonContainer: {
+    flex:1,
     margin: 10,
     flexDirection: 'row',
     justifyContent: 'center',
@@ -176,21 +177,26 @@ const styles = StyleSheet.create({
     
   },
   button: {
-    width:200,
+    flex:1,
+    top:15,
+    width:250,
     height: 60,
+    alignItems: 'center',
     justifyContent: 'center',
     alignSelf: "center",
     backgroundColor: '#eea2ad',
   },
   imageSize:{
     flex:1, 
-    height: 345, 
+    height: 335, 
     width: 385,
     resizeMode: Image.resizeMode.cover,
   },
   chooseText:{
+    flex:1,
+    top:10,
     width:400,
-    height: 30,
+    height: 35,
     justifyContent: 'center',
     alignSelf: "center",
     alignItems: 'center'

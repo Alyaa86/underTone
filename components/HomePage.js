@@ -60,7 +60,7 @@ export default class App extends React.Component {
         <Text style={styles.bigWhite}>READY{'\n'}TO KNOW YOUR{'\n'}UNDERTONE?</Text>
           
  
-        <Link component={Button} rounded style={styles.goButton} to='/Q1' onPress={() => alert("Adjust Your Screen Brightness to Max .. ThankYou ❤️")}>
+        <Link component={Button} rounded style={styles.goButton} to='/Q1' onPress={() => alert("Adjust Your Screen Brightness to Medium .. ThankYou ❤️")}>
 
             <Icon name='ios-thumbs-up' style={styles.WhiteFont}/>
             <Text style={styles.WhiteFont}>GO</Text>
