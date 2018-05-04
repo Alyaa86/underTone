@@ -1,7 +1,7 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, Text, View, TextInput } from 'react-native';
+import { ImageBackground, StyleSheet, Text, TextInput } from 'react-native';
 import { ScrollView, Image } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Left, Body, Right, Title , List, Tab, Tabs, Icon, Drawer} from 'native-base';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Left, Body, Right, Title , List, Tab, Tabs, Icon, Drawer, View} from 'native-base';
 import { Footer, FooterTab, Form, Item, Input, Label } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { NativeRouter, Route, Link, Switch } from 'react-router-native'
@@ -37,7 +37,12 @@ export default class App extends React.Component {
         ref={(ref) => { this.drawer = ref; }}
         content={<MySideBar closeDrawer={closeDrawer.bind(this)}/>} >
       <ImageBackground  source={require('../images/bkgrnd.gif')} 
-          style={{height: 700, width: null, flex: 9}}>
+                        style={{
+                            flex: 1,
+                            alignSelf: 'stretch',
+                            width: undefined,
+                            height: undefined
+                           }}>
       <Container style={styles.container}>
         <Header style={styles.header}>
           <Left>
@@ -45,31 +50,22 @@ export default class App extends React.Component {
               <Icon name="menu"/>
             </Button>
           </Left>
-          <Body>
+          <Body >
             <Text>UNDERTONE APP</Text>
           </Body>
           <Right />
         </Header>
-        <Content>
-        <Text style={styles.bigWhite}> READY TO KNOW YOUR UNDERTONE?</Text>
-        
-          <Form style={styles.form}>
-            <Item stackedLabel >
-              <Label>Write Your Name Here .. </Label>
-              <Input style={styles.WhiteFont} />
-            </Item>
-             <Item  stackedLabel>
-              <Label>Give us Your Email to send you the results </Label>
-              <Input style={styles.WhiteFont} />
-            </Item>
-          </Form>
+        <Content >
+      <View >
+        <Text style={styles.bigWhite}>READY{'\n'}TO KNOW YOUR{'\n'}UNDERTONE?</Text>
+          
  
         <Link component={Button} rounded style={styles.goButton} to='/Q1' onPress={() => alert("Adjust Your Screen Brightness to Max .. ThankYou ❤️")}>
 
-            <Icon name='ios-thumbs-up'/>
+            <Icon name='ios-thumbs-up' style={styles.WhiteFont}/>
             <Text style={styles.WhiteFont}>GO</Text>
           </Link>
-    
+    </View>
          </Content>  
         
         
@@ -91,6 +87,11 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     top: null,
   },
+    container2: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
   divider: {
         borderBottomColor: 'black',
         borderBottomWidth: 1,
@@ -100,11 +101,14 @@ const styles = StyleSheet.create({
     marginLeft: 0,
     alignSelf: "center"
   },
-  bigWhite: {
+  bigWhite: { 
+    top: 50,
     color: 'white',
     fontWeight: 'bold',
     fontSize: 50,
-    alignSelf: "center"
+    alignSelf: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   form:{
     top: 50,
@@ -113,19 +117,20 @@ const styles = StyleSheet.create({
   WhiteFont: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 70,
   },
   goButton:{
-    flex: 1 ,
     position: 'absolute',
-    bottom:-170,
-    left:250, 
-    width: 100,
+    bottom:-250, 
+    width: 300,
+    height:100,
+    alignSelf: "center",
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#eea2ad'
 
   },
+
   header:{
     height: 80,
   },

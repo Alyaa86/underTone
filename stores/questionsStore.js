@@ -5,29 +5,41 @@ import black from '../images/frontPage.png';
 class questionStore {
     constructor() {
         extendObservable(this,{
+            currentlySelected:"",
             questionSet1:[
                 {
-                a:{
+                A:{
                     name:'aaa',
                     image:black
                     },
-                b:{
+                B:{
                     name:'bbb',
-                    image:'../images/thumbnail_black 10.jpg',
+                    image:black,
                     },
                   position:0
                 },
 
                 {
-                    a:{
-                        name:'aa222',
-                        image:'aa2222',
-                        },
-                    b:{
-                        name:'bb222',
-                        image:'bb222',
-                        },
-                      position:1
+                A:{
+                    name:'aa222',
+                    image:'aa2222',
+                    },
+                B:{
+                    name:'bb222',
+                    image:'bb222',
+                    },
+                    position:1
+                },
+                { 
+                A:{
+                    name:'kkk',
+                    image:'kkk',
+                    },
+                B:{
+                    name:'nnn',
+                    image:'nnn',
+                    },
+                    position:2
                 }, 
                  
             ]

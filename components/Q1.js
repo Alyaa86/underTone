@@ -1,8 +1,8 @@
 import React from 'react';
-import {  Link } from 'react-router-native';
+import {  Link, Redirect } from 'react-router-native';
 import { ImageBackground, StyleSheet, Text, View, Alert, TouchableHighlight } from 'react-native';
 import { RkButton } from 'react-native-ui-kitten';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body, Right, Title } from 'native-base';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body, Right, Title, DeckSwiper} from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { ScrollView, Image} from 'react-native';
 import questionStore from '../stores/questionsStore'
@@ -17,6 +17,7 @@ export default class Q1 extends React.Component {
             questionSet1: this.props.questionStore.questionSet1[0],
             countA : 0,
             countB : 0,
+            currentlySelected: {}
         };
     }
 
@@ -36,22 +37,38 @@ export default class Q1 extends React.Component {
         const Question = this.state.questionSet1.position + 1;
         this.setState({
             questionSet1:this.props.questionStore.questionSet1[Question], 
-            countB: addCountB
+            countB: addCountB,
+            
 
         })
     }
 
 
     // backButton(){
-        // const count = this.state.countA + this.state.countB ?? 
-        // const Question = this.state.questionSet1.position - 1;
-        // if (this.state.questionSet1.position < 0 ) 
-          // <Redire
-        // this.setState({
-            // questionSet1:this.props.questionStore.questionSet1[Question], 
-            // count: this.state.count - 1
-        // })
+    //   this.props.navigation.navigate('/HomePage')
     // }
+
+
+        // const count = this.state.countA -1 
+        // const Question = this.state.questionSet1.position - 1
+        // const lastPosition = this.state.questionSet1.position[0]
+        // let currentlySelected = this.state.currentlySelected
+        // if (currentlySelected === this.state.questionSet1.A ){
+        //   this.setState({
+        //     questionSet1:this.props.questionStore.questionSet1[Question], 
+        //     countA: count})}
+       // } else 
+       // if (this.props.questionStore.questionSet1[0]) {
+          // return <HomePage questionStore={questionStore}/>
+          
+       //  } else {
+       //    this.setState({
+       //      questionSet1:this.props.questionStore.questionSet1[Question]
+       //  })
+       //  }
+
+      
+    
 
     // how to redirect to home page if position < 0 
     //  if she choose all B  we decreasing one A all the time when back .. must modify the function .. must be if a is choosen deacrease a 
@@ -61,11 +78,13 @@ export default class Q1 extends React.Component {
 
     render()
    {
+       
+       
     return (
         <Container style={styles.container}>
         <Header >
           <Left>
-            <Link component={Button} transparent to='/HomePage' >
+            <Link transparent to='/HomePage' >
               <Icon name="arrow-back"/>
             </Link>
           </Left>
@@ -77,36 +96,42 @@ export default class Q1 extends React.Component {
              <Content>
         <ImageBackground  source={require('../images/bkgrnd.gif')} 
           style={styles.quarterHeight}>
-                <View style={styles.quarterHeight}>
+                <View >
                     <View style={styles.buttonContainer}>
-                    <TouchableHighlight>
+                   
                         <Button rounded  style={styles.button} 
                             onPress={()=>this.nextButtonA()}>
-                            <Text> {this.state.questionSet1.a.name}</Text>
+                            <Text style={styles.WhiteFont}> {this.state.questionSet1.A.name}</Text>
                             <Text>{this.state.countA}</Text>
                         </Button>
-                    </TouchableHighlight>
+                    
                     </View>
                     <View style={styles.buttonContainer}>
                           <Button rounded style={styles.button}
                           onPress={()=>this.nextButtonB()}>
-                            <Text> {this.state.questionSet1.b.name}</Text>
+                            <Text style={styles.WhiteFont}> {this.state.questionSet1.B.name}</Text>
                             <Text>{this.state.countB}</Text>
                             </Button>
-                    </View>
-                    
+                    </View> 
+              </View>
+              <View style={styles.buttonContainer}>
+              <Button transparent style={styles.chooseText}><Text style={styles.WhiteFont}>choose what makes your skin glow</Text></Button>
+              </View>
+              <View style={styles.buttonContainer}>
+              <Button transparent style={styles.chooseText}><Text style={styles.WhiteFont}> ← scroll to choose → </Text></Button>
               </View>
               </ImageBackground>
-<View style={styles.threeQuarterHeight}>
-            <ScrollView >
-            <Image source={this.state.questionSet1.a.image}/>
-          <Image source={require('../images/frontPage.png')} 
-          style={{height: 200, width: null, flex: 9}}/>
-          </ScrollView>
-          </View>
-</Content>
-
-        </Container>
+                <View >
+                    <ScrollView horizontal={true}
+                            directionalLockEnabled={false}>
+                        <Image style={styles.imageSize} 
+                               source={this.state.questionSet1.A.image}/>
+                        <Image style={styles.imageSize}
+                               source={this.state.questionSet1.B.image}/>
+                    </ScrollView>
+                  </View>
+                </Content>
+              </Container>
 
 
     );
@@ -126,25 +151,49 @@ const styles = StyleSheet.create({
    top:10,
    justifyContent: 'center',
   },
-  
+  WhiteFont: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 20,
+    alignSelf: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   buttonContainer: {
-    margin: 5,
+    margin: 10,
     flexDirection: 'row',
     justifyContent: 'center',
-    
-    margin: 20
-
-    
   },
   quarterHeight: {
     flex: .25,
+    height: undefined, 
+    width: undefined
   },
   threeQuarterHeight: {
     flex: .75,
+    height: undefined, 
+    width: undefined
+    
   },
   button: {
-    width:100,
+    width:200,
+    height: 60,
     justifyContent: 'center',
+    alignSelf: "center",
+    backgroundColor: '#eea2ad',
+  },
+  imageSize:{
+    flex:1, 
+    height: 345, 
+    width: 385,
+    resizeMode: Image.resizeMode.cover,
+  },
+  chooseText:{
+    width:400,
+    height: 30,
+    justifyContent: 'center',
+    alignSelf: "center",
+    alignItems: 'center'
   }
 });
 
