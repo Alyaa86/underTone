@@ -135,6 +135,8 @@ export default class Q1 extends React.Component {
     );
   }
 }
+// think about flex direction 
+// what is /and how to use [Dimensions.get('window');]
 const styles = StyleSheet.create({
   goButton:{
     flex:1,
