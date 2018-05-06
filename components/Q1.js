@@ -29,6 +29,9 @@ export default class Q1 extends React.Component {
         const addCountA = this.state.countA + 1
         const nextIndex = this.state.questionSet.position + 1;
         const lastPicked = this.state.lastPicked.concat(['A']);
+        if (nextIndex === 10) {
+            this.props.history.push('/MyModal');
+        } else {
         this.setState({
             questionSet:this.props.questionStore.questionSet1[nextIndex], 
             countA: addCountA,
@@ -36,7 +39,7 @@ export default class Q1 extends React.Component {
 
         })
     }
-
+  }
     nextButtonB(){
         const addCountB = this.state.countB + 1
         const nextIndex = this.state.questionSet.position + 1;
@@ -129,7 +132,6 @@ export default class Q1 extends React.Component {
               <View style={styles.buttonContainer}>
               <Button transparent style={styles.chooseText}><Text adjustsFontSizeToFit={true} style={styles.WhiteFont}> ← scroll to choose → </Text></Button>
               </View>
-              </ImageBackground>
                 <View >
                     <ScrollView horizontal={true}
                             directionalLockEnabled={false}>
@@ -139,6 +141,7 @@ export default class Q1 extends React.Component {
                                source={this.state.questionSet.B.image}/>
                     </ScrollView>
                   </View>
+              </ImageBackground>
                 </Content>
               </Container>
 
