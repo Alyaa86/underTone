@@ -4,6 +4,8 @@ import { NativeRouter, Route, Link, Switch } from 'react-router-native';
 import HomePage from './components/HomePage.js';
 import questionStore from './stores/questionsStore.js';
 import Q1 from './components/Q1.js';
+import MyModal from './components/InfoModal.js';
+
 
 
 
@@ -13,8 +15,10 @@ export default class App extends React.Component {
       <NativeRouter>
       <Switch>
           <Route path="/HomePage" render={ () => <HomePage questionStore={questionStore}/>} />
-          <Route path="/Q1" render={ () => <Q1 questionStore={questionStore}/>} />
-          <Route exact path= "/" render={ () => <HomePage questionStore={questionStore}/>} />
+          <Route path="/Q1" render={ (props) => <Q1 {...props} questionStore={questionStore}/>} />
+          <Route exact path= "/" render={ () => <HomePage  questionStore={questionStore}/>} />
+          <Route path="/MyModal" render={ (props) => <MyModal {...props} questionStore={questionStore}/>} />
+
         </Switch>
       </NativeRouter>
       

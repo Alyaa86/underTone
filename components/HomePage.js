@@ -1,4 +1,5 @@
 import React from 'react';
+import { StackNavigator } from 'react-navigation';
 import { ImageBackground, StyleSheet, Text, TextInput } from 'react-native';
 import { ScrollView, Image } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Left, Body, Right, Title , List, Tab, Tabs, Icon, Drawer, View} from 'native-base';

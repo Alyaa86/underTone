@@ -8,73 +8,80 @@ import { ScrollView, Image} from 'react-native';
 import questionStore from '../stores/questionsStore'
 import { CheckBox } from 'react-native-elements'
 import HomePage from './HomePage.js';
+import Modal from './InfoModal.js';
+
 
 
 export default class Q1 extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            questionSet1: this.props.questionStore.questionSet1[0],
+            questionSet: this.props.questionStore.questionSet1[0],
             countA : 0,
             countB : 0,
-            currentlySelected: {}
-        };
+            lastPicked: []
+        }
+        
     }
 
 
     nextButtonA(){
         const addCountA = this.state.countA + 1
-        const Question = this.state.questionSet1.position + 1;
+        const nextIndex = this.state.questionSet.position + 1;
+        const lastPicked = this.state.lastPicked.concat(['A']);
         this.setState({
-            questionSet1:this.props.questionStore.questionSet1[Question], 
-            countA: addCountA 
+            questionSet:this.props.questionStore.questionSet1[nextIndex], 
+            countA: addCountA,
+            lastPicked: lastPicked
 
         })
     }
 
     nextButtonB(){
         const addCountB = this.state.countB + 1
-        const Question = this.state.questionSet1.position + 1;
-        this.setState({
-            questionSet1:this.props.questionStore.questionSet1[Question], 
-            countB: addCountB,
-            
+        const nextIndex = this.state.questionSet.position + 1;
+        const lastPicked = this.state.lastPicked.concat(['B']);
+        if (nextIndex === 10) {
+            this.props.history.push('/MyModal');
+        } else {
+          this.setState({
+              questionSet:this.props.questionStore.questionSet1[nextIndex], 
+              countB: addCountB,
+              lastPicked: lastPicked
 
-        })
+          });
+        }
     }
 
+    backButton() {
+      const countA = this.state.countA -1 
+      const countB = this.state.countB -1 
+      const backIndex = this.state.questionSet.position - 1 
+      const lastPicked = this.state.lastPicked && this.state.lastPicked.pop()
 
-    // backButton(){
-    //   this.props.navigation.navigate('/HomePage')
-    // }
+      console.log(this.state.questionSet)
+      console.log(backIndex)
+      console.log(lastPicked)
 
+      if(backIndex === -1) {
+        this.props.history.push('/HomePage');
+      }
 
-        // const count = this.state.countA -1 
-        // const Question = this.state.questionSet1.position - 1
-        // const lastPosition = this.state.questionSet1.position[0]
-        // let currentlySelected = this.state.currentlySelected
-        // if (currentlySelected === this.state.questionSet1.A ){
-        //   this.setState({
-        //     questionSet1:this.props.questionStore.questionSet1[Question], 
-        //     countA: count})}
-       // } else 
-       // if (this.props.questionStore.questionSet1[0]) {
-          // return <HomePage questionStore={questionStore}/>
-          
-       //  } else {
-       //    this.setState({
-       //      questionSet1:this.props.questionStore.questionSet1[Question]
-       //  })
-       //  }
-
-      
+    if (lastPicked === 'A')
+    {
+      this.setState({
+            questionSet:this.props.questionStore.questionSet1[backIndex], 
+            countA: this.state.countA -1})
+    } else if (lastPicked === 'B')
+    {
+       this.setState({
+            questionSet:this.props.questionStore.questionSet1[backIndex],
+            countB: this.state.countB -1
+        });
+    }
     
-
-    // how to redirect to home page if position < 0 
-    //  if she choose all B  we decreasing one A all the time when back .. must modify the function .. must be if a is choosen deacrease a 
-    // ... this.state.position < 0 ? redirect to home page  ???
-    // ... this.state.count === 0 ? this.state.count: stopfunction  ???
-  
+  }
+    
 
     render()
    {
@@ -84,9 +91,9 @@ export default class Q1 extends React.Component {
         <Container style={styles.container}>
         <Header >
           <Left>
-            <Link transparent to='/HomePage' >
+            <Button transparent onPress={()=>this.backButton()} >
               <Icon name="arrow-back"/>
-            </Link>
+            </Button>
           </Left>
           <Body>
             <Text>UNDERTONE APP</Text>
@@ -101,19 +108,23 @@ export default class Q1 extends React.Component {
                    
                         <Button rounded  style={styles.button} 
                             onPress={()=>this.nextButtonA()}>
-                            <Text style={styles.WhiteFont}> {this.state.questionSet1.A.name}</Text>
+                            <Text style={styles.WhiteFont}> {this.state.questionSet.A.name}</Text>
+                            <Text style={styles.WhiteFont}> {this.state.countA}</Text>
+
                         </Button>
                     
                     </View>
                     <View style={styles.buttonContainer}>
                           <Button rounded style={styles.button}
                           onPress={()=>this.nextButtonB()}>
-                            <Text style={styles.WhiteFont}> {this.state.questionSet1.B.name}</Text>
+                            <Text style={styles.WhiteFont}> {this.state.questionSet.B.name}</Text>
+                            <Text style={styles.WhiteFont}> {this.state.countB}</Text>
+
                             </Button>
                     </View> 
               </View>
               <View style={styles.buttonContainer}>
-              <Button transparent style={styles.chooseText}><Text adjustsFontSizeToFit={true} style={styles.WhiteFont}>choose what makes your skin glow</Text></Button>
+              <Button transparent style={styles.chooseText}><Text style={styles.WhiteFont}>choose what makes your skin glow</Text></Button>
               </View>
               <View style={styles.buttonContainer}>
               <Button transparent style={styles.chooseText}><Text adjustsFontSizeToFit={true} style={styles.WhiteFont}> ← scroll to choose → </Text></Button>
@@ -123,9 +134,9 @@ export default class Q1 extends React.Component {
                     <ScrollView horizontal={true}
                             directionalLockEnabled={false}>
                         <Image style={styles.imageSize} 
-                               source={this.state.questionSet1.A.image}/>
+                               source={this.state.questionSet.A.image}/>
                         <Image style={styles.imageSize}
-                               source={this.state.questionSet1.B.image}/>
+                               source={this.state.questionSet.B.image}/>
                     </ScrollView>
                   </View>
                 </Content>
@@ -135,6 +146,7 @@ export default class Q1 extends React.Component {
     );
   }
 }
+
 // think about flex direction 
 // what is /and how to use [Dimensions.get('window');]
 const styles = StyleSheet.create({
@@ -197,7 +209,7 @@ const styles = StyleSheet.create({
   chooseText:{
     flex:1,
     top:10,
-    width:400,
+    width:200,
     height: 35,
     justifyContent: 'center',
     alignSelf: "center",
