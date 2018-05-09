@@ -4,13 +4,19 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  Button,
   View,
-  AsyncStorage
+  AsyncStorage,
+  ImageBackground,
+  Image
 } from 'react-native';
 import {  Link, Redirect } from 'react-router-native';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Icon, Left, Body, Right, Title, DeckSwiper, Button} from 'native-base';
+import {observer} from 'mobx-react'
+import questionStore from '../stores/questionsStore'
 
-export default class DummyResults extends Component {
+
+
+export default observer(class DummyResuts extends Component {
 
   constructor(props) {
     super(props);
@@ -18,80 +24,141 @@ export default class DummyResults extends Component {
         myKey: null
     }
   }
+componentWillUnmount() {
+      questionStore.Results = this.props.test1Results(); 
+    }
+  // async getKey() {
+  //   try {
+  //     const value = await AsyncStorage.getItem('@MySuperStore:key');
+  //     this.setState({myKey: value});
+  //   } catch (error) {
+  //     console.log("Error retrieving data" + error);
+  //   }
+  // }
 
-  async getKey() {
-    try {
-      const value = await AsyncStorage.getItem('@MySuperStore:key');
-      this.setState({myKey: value});
-    } catch (error) {
-      console.log("Error retrieving data" + error);
+
+  seasonSelect(){
+    let firstResults = this.questionStore.Results
+    if (firstResults === 'Warm') {
+      this.props.history.push('/QWarm');
+    } else if (firstResults === 'Cool') {
+      this.props.history.push('/QCool');
+    } else {
+      this.props.history.push('/QNeutral');
     }
   }
-
-  async setKey(){
-    try {
-      console.log(value)
-      await AsyncStorage.setItem('Results');
-    } catch (error) {
-      console.log("Error saving data" + error);
-    }
-  }
-  
-let results = {
-  // this.state.results...
-}
- AsyncStorage.mergeItem('whatever i want ', JSON.stringify(results), () => {
-    AsyncStorage.getItem('whatever i want', (err, finalResult) => {
-      console.log(finalResult);
-
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to Demo AsyncStorage!
-        </Text>
 
 
-        <Button
-          style={styles.formButton}
-          onPress={this.getKey.bind(this)}
-          title="Get Key"
-          color="#2196f3"
-          accessibilityLabel="Get Key"
-        />
+       <Container style={styles.container}>
+        <Header >
+          <Left>
+            <Link transparent to= '/HomePage' >
+              <Icon name="arrow-back"/>
+            </Link>
+          </Left>
+          <Body>
+            <Text>UNDERTONE APP</Text>
+          </Body>
+          <Right />
+        </Header>
+             <Content>
 
-        <Text style={styles.instructions}>
-          Stored key is = {this.state.myKey}
-        </Text>
+        <ImageBackground  source={require('../images/bkgrnd.gif')} 
+          style={styles.quarterHeight}>
+                <View >
+                   
+                        
+                            <Text style={styles.WhiteFont}>
+                              Stored key is = {this.props.questionStore.Results}
+                            </Text>
+                        
+                    <View style={styles.buttonContainer}>
+                    <Button round style= {styles.goButton} onPress = {()=>this.seasonSelect()}>
+                    <Text style={styles.WhiteFont}> Next Test</Text>
+                    </Button>
+
+                    </View>
+              </View>
+
+              </ImageBackground>
+                </Content>
+              </Container>
+      
+        
 
 
-      </View>
+      
     );
   }
-}
+})
 
 const styles = StyleSheet.create({
+    goButton:{
+    flex:1,
+    position: 'relative',
+    width: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#eea2ad',
+    left:200,
+    margin: 20
+  },
   container: {
-    padding: 30,
-    flex: 1,
-    alignItems: 'stretch',
-    backgroundColor: '#F5FCFF',
+   flex:1,
+   top:10,
+   justifyContent: 'center',
   },
-  welcome: {
+  WhiteFont: {
+    color: 'white',
+    fontWeight: 'bold',
     fontSize: 20,
-    textAlign: 'center',
+    alignSelf: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonContainer: {
+    flex:1,
     margin: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
-
-  formButton: {
-    borderWidth: 1,
-    borderColor: "#555555",
+  quarterHeight: {
+    flex: .25,
+    height: undefined, 
+    width: undefined
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-    marginTop: 5,
+  threeQuarterHeight: {
+    flex: .75,
+    height: undefined, 
+    width: undefined
+    
   },
+  button: {
+    flex:1,
+    top:15,
+    width:250,
+    height: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: "center",
+    backgroundColor: '#eea2ad',
+  },
+  imageSize:{
+    flex:1, 
+    height: 335, 
+    width: 385,
+    resizeMode: Image.resizeMode.cover,
+  },
+  chooseText:{
+    flex:1,
+    top:10,
+    width:200,
+    height: 35,
+    justifyContent: 'center',
+    alignSelf: "center",
+    alignItems: 'center'
+  }
 });

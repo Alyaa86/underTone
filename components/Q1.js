@@ -9,6 +9,10 @@ import questionStore from '../stores/questionsStore'
 import { CheckBox } from 'react-native-elements'
 import HomePage from './HomePage.js';
 import Modal from './InfoModal.js';
+import FadeInView from './FadeIn.js';
+import DummyResults from './DummyResults';
+
+
 
 
 
@@ -24,28 +28,32 @@ export default class Q1 extends React.Component {
         
     }
 
+    componentWillUnmount() {
+      questionStore.Results = this.test1Results();
+    }
 
     nextButtonA(){
-        const addCountA = this.state.countA + 1
-        const nextIndex = this.state.questionSet.position + 1;
-        const lastPicked = this.state.lastPicked.concat(['A']);
-        if (nextIndex === 10) {
-            this.props.history.push('/MyModal');
-        } else {
-        this.setState({
-            questionSet:this.props.questionStore.questionSet1[nextIndex], 
-            countA: addCountA,
-            lastPicked: lastPicked
+       const addCountA = this.state.countA + 1
+       const nextIndex = this.state.questionSet.position + 1;
+       const lastPicked = this.state.lastPicked.concat(['A']);
+       if (nextIndex === 10) {
+           this.props.history.push('/DummyResults');
+       } else {
+       this.setState({
+           questionSet:this.props.questionStore.questionSet1[nextIndex],
+           countA: addCountA,
+           lastPicked: lastPicked
 
-        })
-    }
-  }
+       })
+   }
+ }
+    
     nextButtonB(){
         const addCountB = this.state.countB + 1
         const nextIndex = this.state.questionSet.position + 1;
         const lastPicked = this.state.lastPicked.concat(['B']);
         if (nextIndex === 10) {
-            this.props.history.push('/MyModal');
+            this.props.history.push('/DummyResults');
         } else {
           this.setState({
               questionSet:this.props.questionStore.questionSet1[nextIndex], 
@@ -84,11 +92,28 @@ export default class Q1 extends React.Component {
     }
     
   }
-    
 
-    render()
-   {
-       
+
+  test1Results() {
+    // const test1Results = await count.test1ResultsAsync(options);
+    const countA = this.state.countA
+      if (countA > 5){
+          return "Cool"
+        }else if (countA === 5){
+          return "Neutral"
+        }else {
+          return "Warm"
+        }
+                 
+    }
+    
+// takePicture = async function(camera) {
+//     const options = { quality: 0.5, base64: true };
+//     const data = await camera.takePictureAsync(options);
+//     //  eslint-disable-next-line
+//     console.log(data.uri);
+
+     render(){  
        
     return (
         <Container style={styles.container}>

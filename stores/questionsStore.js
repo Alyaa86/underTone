@@ -19,6 +19,18 @@ import orange19 from '../images/orange19.jpg';
 import magenta20 from '../images/magenta20.jpg';
 import gold21 from '../images/gold21.jpg';
 import silver22 from '../images/silver22.jpg';
+import DeepWinter from '../images/q2DeepWinter.jpg';
+import CoolWinter from '../images/q2CoolWinter.jpg';
+import ClearWinter from '../images/q2ClearWinter.jpg';
+import DeepAutumn from '../images/q2DeepAutumn.jpg';
+import SoftAutumn from '../images/q2SoftAutumn.jpg';
+import WarmAutumn from '../images/q2WarmAutumn.jpg';
+import ClearSpring from '../images/q2ClearSpring.jpg';
+import LightSpring from '../images/q2LightSpring.jpg';
+import WarmSpring from '../images/q2WarmSpring.jpg';
+import SoftSummer from '../images/q2SoftSummer.jpg';
+import LightSummer from '../images/q2LightSummer.jpg';
+import CoolSummer from '../images/q2CoolSummer.jpg';
 
 
 
@@ -26,7 +38,7 @@ import silver22 from '../images/silver22.jpg';
 class questionStore {
     constructor() {
         extendObservable(this,{
-            currentlySelected:"",
+            Results:"",
             questionSet1:[
                 {
                 A:{
@@ -139,11 +151,85 @@ class questionStore {
                     },
                   position:9
                 }, 
-            ]
-        }
-    )
+            ],
+            questionSet2:{
+               cool:[
+               {
+                   name:'Deep Winter',
+                   image:DeepWinter,
+                   position:0
+               },
+               {
+                   name:'Clear Winter',
+                   image:ClearWinter,
+                   position:1
+               },
+               {
+                   name:'SoftSummer',
+                   image:SoftSummer,
+                   position:2
+               },
+               {
+                   name:'Light Summer',
+                   image:LightSummer,
+                   position:3
+               },
+
+               ],
+               neutral:[
+               {
+                   name:'Cool Winter',
+                   image:CoolWinter,
+                   position:0
+               },
+               {
+                   name:'Cool Summer',
+                   image:CoolSummer,
+                   position:1
+               },
+               {
+                   name:'Warm Autumn',
+                   image:WarmAutumn,
+                   position:2
+               },
+               {
+                   name:'Warm Spring',
+                   image:WarmSpring,
+                   position:3
+               },
+
+               ],
+               warm:[
+               {
+                   name:'Deep Autumn',
+                   image:DeepAutumn,
+                   position:0
+               },
+               {
+                   name:'Soft Autumn',
+                   image:SoftAutumn,
+                   position:1
+               },
+               {
+                   name:'Light Spring',
+                   image:LightSpring,
+                   position:2
+               },
+               {
+                   name:'Clear Spring',
+                   image:ClearSpring,
+                   position:3
+               },
+
+               ],
+            },
+        })
+        
+    }      
+
 }
-}
+
+
 
 
 export default new questionStore()
