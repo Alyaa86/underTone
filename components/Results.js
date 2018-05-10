@@ -17,15 +17,6 @@ export default observer(class Resuts extends Component {
     }
   }
 
-  // async getKey() {
-  //   try {
-  //     const value = await AsyncStorage.getItem('@MySuperStore:key');
-  //     this.setState({myKey: value});
-  //   } catch (error) {
-  //     console.log("Error retrieving data" + error);
-  //   }
-  // }
-
 
   seasonSelect(){
     let firstResults = this.props.questionStore.Results

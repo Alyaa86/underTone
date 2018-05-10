@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     margin: 10,
     flexDirection: 'row',
     justifyContent: 'center',
-    width: 350
+    width: 300
   },
   quarterHeight: {
     flex: .25,
