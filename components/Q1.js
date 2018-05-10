@@ -1,6 +1,6 @@
 import React from 'react';
 import {  Link, Redirect } from 'react-router-native';
-import { ImageBackground, StyleSheet, Text, View, Alert, TouchableHighlight } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, Alert, TouchableOpacity } from 'react-native';
 import { RkButton } from 'react-native-ui-kitten';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body, Right, Title, DeckSwiper} from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
@@ -109,6 +109,8 @@ export default class Q1 extends React.Component {
      render(){  
        
     return (
+        <ImageBackground  source={require('../images/bkgrnd.gif')} 
+          style={styles.quarterHeight}>
         <Container style={styles.container}>
         <Header >
           <Left>
@@ -123,24 +125,6 @@ export default class Q1 extends React.Component {
         </Header>
              <Content>
       <FadeInView>
-        <ImageBackground  source={require('../images/bkgrnd.gif')} 
-          style={styles.quarterHeight}>
-                <View >
-                    <View style={styles.buttonContainer}>
-                   
-                        <Button rounded  style={styles.button} 
-                            onPress={()=>this.nextButtonA()}>
-                            <Text style={styles.WhiteFont}> {this.state.questionSet.A.name}</Text>
-                        </Button>
-                    
-                    </View>
-                    <View style={styles.buttonContainer}>
-                          <Button rounded style={styles.button}
-                          onPress={()=>this.nextButtonB()}>
-                            <Text style={styles.WhiteFont}> {this.state.questionSet.B.name}</Text>
-                            </Button>
-                    </View> 
-              </View>
               <View style={styles.buttonContainer}>
               <Button transparent style={styles.chooseText}><Text style={styles.WhiteFont}>choose what makes your skin glow</Text></Button>
               </View>
@@ -150,17 +134,21 @@ export default class Q1 extends React.Component {
                 <View >
                     <ScrollView horizontal={true}
                             directionalLockEnabled={false}>
+                        <TouchableOpacity onPress={()=>this.nextButtonA()}>
                         <Image style={styles.imageSize} 
                                source={this.state.questionSet.A.image}/>
+                               </TouchableOpacity>
+                        <TouchableOpacity onPress={()=>this.nextButtonB()}>
                         <Image style={styles.imageSize}
                                source={this.state.questionSet.B.image}/>
+                               </TouchableOpacity>
                     </ScrollView>
                   </View>
 
-              </ImageBackground>
               </FadeInView>
                 </Content>
               </Container>
+              </ImageBackground>
 
 
     );
@@ -170,19 +158,9 @@ export default class Q1 extends React.Component {
 // think about flex direction 
 // what is /and how to use [Dimensions.get('window');]
 const styles = StyleSheet.create({
-  goButton:{
-    flex:1,
-    position: 'relative',
-    width: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#eea2ad',
-    left:200,
-    margin: 20
-  },
   container: {
    flex:1,
-   top:10,
+   top:null,
    justifyContent: 'center',
   },
   WhiteFont: {
@@ -200,29 +178,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   quarterHeight: {
-    flex: .25,
+    flex: 1,
     height: undefined, 
-    width: undefined
-  },
-  threeQuarterHeight: {
-    flex: .75,
-    height: undefined, 
-    width: undefined
-    
-  },
-  button: {
-    flex:1,
-    top:15,
-    width:250,
-    height: 60,
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignSelf: "center",
-    backgroundColor: '#eea2ad',
+    width: undefined,
+    alignSelf: 'stretch',
   },
   imageSize:{
     flex:1, 
-    height: 335, 
+    height: 466, 
     width: 385,
     resizeMode: Image.resizeMode.cover,
   },
