@@ -3,7 +3,7 @@ import {  Link, Redirect } from 'react-router-native';
 import { ImageBackground, StyleSheet, Text, View, Alert, TouchableOpacity } from 'react-native';
 import { RkButton } from 'react-native-ui-kitten';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body, Right, Title, DeckSwiper} from 'native-base';
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import { Col, Row } from 'react-native-easy-grid';
 import { ScrollView, Image} from 'react-native';
 import questionStore from '../stores/questionsStore'
 import { CheckBox } from 'react-native-elements'
@@ -125,12 +125,20 @@ export default class Q1 extends React.Component {
         </Header>
              <Content>
       <FadeInView>
-              <View style={styles.buttonContainer}>
-              <Button transparent style={styles.chooseText}><Text style={styles.WhiteFont}>choose what makes your skin glow</Text></Button>
+              <Row style={{margin: 30}}>
+              <Col>
+              <View >
+              <Button transparent style={styles.chooseText}>
+              <Text style={styles.WhiteFont}>Choose What Makes Your Skin Glow</Text>
+              </Button>
               </View>
               <View style={styles.buttonContainer}>
-              <Button transparent style={styles.chooseText}><Text adjustsFontSizeToFit={true} style={styles.WhiteFont}> 👈🏻 scroll to choose 👉🏻 </Text></Button>
+              <Button transparent style={styles.chooseText}>
+              <Text style={styles.scrollFont}> 👈🏻 Scroll to Choose 👉🏻 </Text>
+              </Button>
               </View>
+              </Col>
+              </Row>
                 <View >
                     <ScrollView horizontal={true}
                             directionalLockEnabled={false}>
@@ -171,6 +179,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  scrollFont: {
+    color: '#79cdcd',
+    fontWeight: 'bold',
+    fontSize: 25,
+    alignSelf: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   buttonContainer: {
     flex:1,
     margin: 10,
@@ -192,7 +208,7 @@ const styles = StyleSheet.create({
   chooseText:{
     flex:1,
     top:10,
-    width:200,
+    width:370,
     height: 35,
     justifyContent: 'center',
     alignSelf: "center",
