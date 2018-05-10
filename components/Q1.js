@@ -10,7 +10,7 @@ import { CheckBox } from 'react-native-elements'
 import HomePage from './HomePage.js';
 import Modal from './InfoModal.js';
 import FadeInView from './FadeIn.js';
-import DummyResults from './DummyResults';
+import Results from './Results';
 
 
 
@@ -37,7 +37,7 @@ export default class Q1 extends React.Component {
        const nextIndex = this.state.questionSet.position + 1;
        const lastPicked = this.state.lastPicked.concat(['A']);
        if (nextIndex === 10) {
-           this.props.history.push('/DummyResults');
+           this.props.history.push('/Results');
        } else {
        this.setState({
            questionSet:this.props.questionStore.questionSet1[nextIndex],
@@ -53,7 +53,7 @@ export default class Q1 extends React.Component {
         const nextIndex = this.state.questionSet.position + 1;
         const lastPicked = this.state.lastPicked.concat(['B']);
         if (nextIndex === 10) {
-            this.props.history.push('/DummyResults');
+            this.props.history.push('/Results');
         } else {
           this.setState({
               questionSet:this.props.questionStore.questionSet1[nextIndex], 
@@ -70,9 +70,7 @@ export default class Q1 extends React.Component {
       const backIndex = this.state.questionSet.position - 1 
       const lastPicked = this.state.lastPicked && this.state.lastPicked.pop()
 
-      console.log(this.state.questionSet)
-      console.log(backIndex)
-      console.log(lastPicked)
+      
 
       if(backIndex === -1) {
         this.props.history.push('/HomePage');
@@ -95,7 +93,6 @@ export default class Q1 extends React.Component {
 
 
   test1Results() {
-    // const test1Results = await count.test1ResultsAsync(options);
     const countA = this.state.countA
       if (countA > 5){
           return "Cool"
@@ -107,11 +104,6 @@ export default class Q1 extends React.Component {
                  
     }
     
-// takePicture = async function(camera) {
-//     const options = { quality: 0.5, base64: true };
-//     const data = await camera.takePictureAsync(options);
-//     //  eslint-disable-next-line
-//     console.log(data.uri);
 
      render(){  
        
@@ -129,6 +121,7 @@ export default class Q1 extends React.Component {
           <Right />
         </Header>
              <Content>
+      <FadeInView>
         <ImageBackground  source={require('../images/bkgrnd.gif')} 
           style={styles.quarterHeight}>
                 <View >
@@ -167,6 +160,7 @@ export default class Q1 extends React.Component {
                     </ScrollView>
                   </View>
               </ImageBackground>
+              </FadeInView>
                 </Content>
               </Container>
 

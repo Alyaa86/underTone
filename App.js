@@ -5,9 +5,12 @@ import HomePage from './components/HomePage.js';
 import questionStore from './stores/questionsStore.js';
 import Q1 from './components/Q1.js';
 import MyModal from './components/InfoModal.js';
-import DummyResults from './components/DummyResults.js';
+import Results from './components/Results.js';
 import resultStore from './stores/resultStore.js';
 import QWarm from './components/QWarm.js';
+import QCool from './components/QCool.js';
+import QNeutral from './components/QNeutral.js';
+import FinalResult from './components/FinalResults.js';
 
 
 
@@ -24,9 +27,11 @@ export default class App extends React.Component {
           <Route path="/Q1" render={ (props) => <Q1 {...props} questionStore={questionStore}/>} />
           <Route exact path= "/" render={ () => <HomePage  questionStore={questionStore}/>} />
           <Route path="/MyModal" render={ (props) => <MyModal {...props} questionStore={questionStore}/>} />
-          <Route path="/DummyResults" render={ (props) => <DummyResults {...props} questionStore={questionStore} resultStore={resultStore}/>} />
-          <Route path="/QWarm" render={ (props) => <QWarm {...props} questionStore={questionStore} resultStore={resultStore}/>} />
-
+          <Route path="/Results" render={ (props) => <Results {...props} questionStore={questionStore}/>} />
+          <Route path="/QWarm" render={ (props) => <QWarm {...props} questionStore={questionStore} />} />
+          <Route path="/QCool" render={ (props) => <QCool {...props} questionStore={questionStore} />} />
+          <Route path="/QNeutral" render={ (props) => <QNeutral {...props} questionStore={questionStore} />} />
+          <Route path="/FinalResult" render={ (props) => <FinalResult {...props} questionStore={questionStore} />} />
         </Switch>
       </NativeRouter>
       
@@ -34,13 +39,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

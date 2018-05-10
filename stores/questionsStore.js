@@ -31,6 +31,18 @@ import WarmSpring from '../images/q2WarmSpring.jpg';
 import SoftSummer from '../images/q2SoftSummer.jpg';
 import LightSummer from '../images/q2LightSummer.jpg';
 import CoolSummer from '../images/q2CoolSummer.jpg';
+import brightSpring from '../images/brightSpring.png';
+import brightWinter from '../images/brightWinter.png';
+import darkAutumn from '../images/darkAutumn.png';
+import darkWinter from '../images/darkWinter.png';
+import lightSpring from '../images/lightSpring.png';
+import lightSummer from '../images/lightSummer.png';
+import softAutumn from '../images/softAutumn.png';
+import softSummer from '../images/softSummer.png';
+import nutralAutumn from '../images/nutralAutumn.png';
+import nutralSpring from '../images/nutralSpring.png';
+import nutralSummer from '../images/nutralSummer.png';
+import nutralWinter from '../images/nutralWinter.png';
 
 
 
@@ -39,6 +51,7 @@ class questionStore {
     constructor() {
         extendObservable(this,{
             Results:"",
+            finalResults:null,
             questionSet1:[
                 {
                 A:{
@@ -157,21 +170,25 @@ class questionStore {
                {
                    name:'Deep Winter',
                    image:DeepWinter,
+                   result: darkWinter,
                    position:0
                },
                {
                    name:'Clear Winter',
                    image:ClearWinter,
+                   result:brightWinter,
                    position:1
                },
                {
                    name:'SoftSummer',
                    image:SoftSummer,
+                   result: softSummer,
                    position:2
                },
                {
                    name:'Light Summer',
                    image:LightSummer,
+                   result:lightSummer,
                    position:3
                },
 
@@ -180,21 +197,25 @@ class questionStore {
                {
                    name:'Cool Winter',
                    image:CoolWinter,
+                   result:nutralWinter,
                    position:0
                },
                {
                    name:'Cool Summer',
                    image:CoolSummer,
+                   result:nutralSummer,
                    position:1
                },
                {
                    name:'Warm Autumn',
                    image:WarmAutumn,
+                   result:nutralAutumn,
                    position:2
                },
                {
                    name:'Warm Spring',
                    image:WarmSpring,
+                   result:nutralSpring,
                    position:3
                },
 
@@ -203,21 +224,25 @@ class questionStore {
                {
                    name:'Deep Autumn',
                    image:DeepAutumn,
+                   result: darkAutumn,
                    position:0
                },
                {
                    name:'Soft Autumn',
                    image:SoftAutumn,
+                   result: softAutumn,
                    position:1
                },
                {
                    name:'Light Spring',
                    image:LightSpring,
+                   result:lightSpring,
                    position:2
                },
                {
                    name:'Clear Spring',
                    image:ClearSpring,
+                   result: brightSpring,
                    position:3
                },
 

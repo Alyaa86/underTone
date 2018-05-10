@@ -1,22 +1,14 @@
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  AsyncStorage,
-  ImageBackground,
-  Image
-} from 'react-native';
-import {  Link, Redirect } from 'react-router-native';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Icon, Left, Body, Right, Title, DeckSwiper, Button} from 'native-base';
-import {observer} from 'mobx-react'
-import questionStore from '../stores/questionsStore'
+import { StyleSheet, Text, TextInput, View, AsyncStorage, ImageBackground, Image } from 'react-native';
+import {  Link } from 'react-router-native';
+import { Container, Header, Content, Icon, Left, Body, Right, Button} from 'native-base';
+import {observer} from 'mobx-react';
+import questionStore from '../stores/questionsStore';
+import FadeInView from './FadeIn.js';
 
 
 
-export default observer(class DummyResuts extends Component {
+export default observer(class Resuts extends Component {
 
   constructor(props) {
     super(props);
@@ -24,9 +16,7 @@ export default observer(class DummyResuts extends Component {
         myKey: null
     }
   }
-componentWillUnmount() {
-      questionStore.Results = this.props.test1Results(); 
-    }
+
   // async getKey() {
   //   try {
   //     const value = await AsyncStorage.getItem('@MySuperStore:key');
@@ -38,7 +28,7 @@ componentWillUnmount() {
 
 
   seasonSelect(){
-    let firstResults = this.questionStore.Results
+    let firstResults = this.props.questionStore.Results
     if (firstResults === 'Warm') {
       this.props.history.push('/QWarm');
     } else if (firstResults === 'Cool') {
@@ -51,6 +41,8 @@ componentWillUnmount() {
   render() {
     return (
 
+        <ImageBackground  source={require('../images/bkgrnd.gif')} 
+          style={styles.quarterHeight}>
 
        <Container style={styles.container}>
         <Header >
@@ -64,28 +56,29 @@ componentWillUnmount() {
           </Body>
           <Right />
         </Header>
+        <Content>
+             <FadeInView>
              <Content>
-
-        <ImageBackground  source={require('../images/bkgrnd.gif')} 
-          style={styles.quarterHeight}>
-                <View >
-                   
-                        
-                            <Text style={styles.WhiteFont}>
-                              Stored key is = {this.props.questionStore.Results}
-                            </Text>
-                        
-                    <View style={styles.buttonContainer}>
-                    <Button round style= {styles.goButton} onPress = {()=>this.seasonSelect()}>
-                    <Text style={styles.WhiteFont}> Next Test</Text>
-                    </Button>
-
-                    </View>
+             <View style={styles.buttonContainer}>
+             
+                  <Text style={styles.bigWhite}>
+                    You have :{'\n'} {this.props.questionStore.Results} Skin 
+                  </Text>
+                 
+                  </View>
+                  </Content>
+              
+                  <Content>
+                    <View style={styles.buttonContainer}>    
+                  <Button rounded style= {styles.button} onPress = {()=>this.seasonSelect()} >
+                    <Text style={styles.WhiteFont}>Go Next</Text>
+                  </Button>
               </View>
-
-              </ImageBackground>
+                </Content>
+              </FadeInView>
                 </Content>
               </Container>
+              </ImageBackground>
       
         
 
@@ -107,34 +100,29 @@ const styles = StyleSheet.create({
     margin: 20
   },
   container: {
-   flex:1,
-   top:10,
-   justifyContent: 'center',
+    ...StyleSheet.absoluteFillObject,
+    top: null,
   },
   WhiteFont: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 25,
     alignSelf: "center",
     justifyContent: 'center',
     alignItems: 'center',
   },
   buttonContainer: {
     flex:1,
-    margin: 10,
+    margin: 60,
     flexDirection: 'row',
     justifyContent: 'center',
   },
   quarterHeight: {
-    flex: .25,
-    height: undefined, 
-    width: undefined
-  },
-  threeQuarterHeight: {
-    flex: .75,
-    height: undefined, 
-    width: undefined
-    
+    flex: 1,
+    alignSelf: 'stretch',
+    width: undefined,
+    height: undefined
+                             
   },
   button: {
     flex:1,
@@ -151,6 +139,15 @@ const styles = StyleSheet.create({
     height: 335, 
     width: 385,
     resizeMode: Image.resizeMode.cover,
+  },
+  bigWhite: { 
+    top: 70,
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 50,
+    alignSelf: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   chooseText:{
     flex:1,

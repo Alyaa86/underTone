@@ -4,13 +4,13 @@ import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 import { Container, Header, Content, Button, Icon, Left, Body, Right, Title } from 'native-base';
 import { Col, Row } from 'react-native-easy-grid';
 import { ScrollView, Image} from 'react-native';
+import FadeInView from './FadeIn.js';
 import questionStore from '../stores/questionsStore'
 import HomePage from './HomePage.js';
-import FadeInView from './FadeIn.js';
 import FinalResult from './FinalResults.js';
 import {observer} from 'mobx-react'
 
-export default observer(class QWarm extends React.Component {
+export default observer(class QCool extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
@@ -20,14 +20,14 @@ export default observer(class QWarm extends React.Component {
     }
 
   test2Results(currentlySelected) {
-      if (currentlySelected === this.state.questionSet.warm[0].name){
-        questionStore.finalResults = this.state.questionSet.warm[0].result
-        } else if (currentlySelected === this.state.questionSet.warm[1].name){
-          questionStore.finalResults = this.state.questionSet.warm[1].result
-        } else if (currentlySelected === this.state.questionSet.warm[2].name){
-          questionStore.finalResults = this.state.questionSet.warm[2].result
-        }else if (currentlySelected === this.state.questionSet.warm[3].name){
-          questionStore.finalResults = this.state.questionSet.warm[3].result
+      if (currentlySelected === this.state.questionSet.cool[0].name){
+        questionStore.finalResults = this.state.questionSet.cool[0].result
+        } else if (currentlySelected === this.state.questionSet.cool[1].name){
+          questionStore.finalResults = this.state.questionSet.cool[1].result
+        } else if (currentlySelected === this.state.questionSet.cool[2].name){
+          questionStore.finalResults = this.state.questionSet.cool[2].result
+        }else if (currentlySelected === this.state.questionSet.cool[3].name){
+          questionStore.finalResults = this.state.questionSet.cool[3].result
         }
         this.props.history.push('/FinalResult')         
     }
@@ -73,40 +73,40 @@ export default observer(class QWarm extends React.Component {
                         <Row style={styles.buttonContainer}>
                         <Col>
                             <Button rounded style={styles.button}
-                                    onPress={()=>this.test2Results('Deep Autumn')}>
+                                    onPress={()=>this.test2Results('Deep Winter')}>
                               <Row>
                               <Col>
-                                <Text style={styles.WhiteFont}> I am {this.state.questionSet.warm[0].name}</Text>
+                                <Text style={styles.WhiteFont}> I am {this.state.questionSet.cool[0].name}</Text>
                                 <Text style={styles.WhiteFont}>Let See My Colors</Text>
                               </Col>
                               </Row>
                             </Button>
                               
                             <Button rounded style={styles.button}
-                                    onPress={()=>this.test2Results('Soft Autumn')}>
+                                    onPress={()=>this.test2Results('Clear Winter')}>
                               <Row>
                               <Col>
-                                <Text style={styles.WhiteFont}> I am {this.state.questionSet.warm[1].name}</Text>
+                                <Text style={styles.WhiteFont}> I am {this.state.questionSet.cool[1].name}</Text>
                                 <Text style={styles.WhiteFont}>Let See My Colors</Text>
                               </Col>
                               </Row>
                             </Button>
 
                             <Button rounded style={styles.button}
-                                    onPress={()=>this.test2Results('Light Spring')}>
+                                    onPress={()=>this.test2Results('SoftSummer')}>
                               <Row>
                               <Col>
-                                <Text style={styles.WhiteFont}> I am {this.state.questionSet.warm[2].name}</Text>
+                                <Text style={styles.WhiteFont}> I am {this.state.questionSet.cool[2].name}</Text>
                                 <Text style={styles.WhiteFont}>Let See My Colors</Text>
                               </Col>
                               </Row>
                             </Button>
                             
                             <Button rounded style={styles.button}
-                                    onPress={()=>this.test2Results('Clear Spring')}>
+                                    onPress={()=>this.test2Results('Light Summer')}>
                               <Row>
                               <Col>
-                                <Text style={styles.WhiteFont}> I am {this.state.questionSet.warm[3].name}</Text>
+                                <Text style={styles.WhiteFont}> I am {this.state.questionSet.cool[3].name}</Text>
                                 <Text style={styles.WhiteFont}>Let See My Colors</Text>
                               </Col>
                               </Row>
@@ -117,13 +117,13 @@ export default observer(class QWarm extends React.Component {
                         </ScrollView> 
                         
                         <Image style={styles.imageSize} 
-                               source={this.state.questionSet.warm[0].image}/>
+                               source={this.state.questionSet.cool[0].image}/>
                         <Image style={styles.imageSize} 
-                               source={this.state.questionSet.warm[1].image}/>
+                               source={this.state.questionSet.cool[1].image}/>
                         <Image style={styles.imageSize} 
-                               source={this.state.questionSet.warm[2].image}/>
+                               source={this.state.questionSet.cool[2].image}/>
                         <Image style={styles.imageSize} 
-                               source={this.state.questionSet.warm[3].image}/>
+                               source={this.state.questionSet.cool[3].image}/>
                    
                     </ScrollView>
                   </View>

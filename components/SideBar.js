@@ -1,8 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, AsyncStorage, } from 'react-native';
 import { List, ListItem, Container, Button, Icon, Header, Left, Right, Body, Content } from 'native-base'
 
 export default class MySideBar extends React.Component {
+  constructor(props) {
+        super(props);
+        this.state = { 
+            Key: null
+        
+    }
+  }
+  
+  
+
 render() {
     return (
         
@@ -21,7 +31,6 @@ render() {
             
         </Header>
         <List>
-            <ListItem itemDivider> <Text>Result 1</Text> </ListItem>
             <ListItem itemDivider> <Text>Result 1</Text> </ListItem>
             <ListItem itemDivider> <Text>Result 1</Text> </ListItem>
             <ListItem itemDivider> <Text>Result 1</Text> </ListItem>
