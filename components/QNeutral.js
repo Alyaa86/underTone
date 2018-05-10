@@ -1,6 +1,6 @@
 import React from 'react';
 import {  Link } from 'react-router-native';
-import { ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Container, Header, Content, Button, Icon, Left, Body, Right, Title } from 'native-base';
 import { Col, Row } from 'react-native-easy-grid';
 import { ScrollView, Image} from 'react-native';
@@ -69,62 +69,22 @@ export default observer(class QNeutral extends React.Component {
                 <View >
                     <ScrollView horizontal={true}
                             directionalLockEnabled={false}>
-                        <ScrollView>   
-                        <Row style={styles.buttonContainer}>
-                        <Col>
-                            <Button rounded style={styles.button}
-                                    onPress={()=>this.test2Results('Cool Winter')}>
-                              <Row>
-                              <Col>
-                                <Text style={styles.WhiteFont}> I am {this.state.questionSet.neutral[0].name}</Text>
-                                <Text style={styles.WhiteFont}>Let See My Colors</Text>
-                              </Col>
-                              </Row>
-                            </Button>
-                              
-                            <Button rounded style={styles.button}
-                                    onPress={()=>this.test2Results('Cool Winter')}>
-                              <Row>
-                              <Col>
-                                <Text style={styles.WhiteFont}> I am {this.state.questionSet.neutral[1].name}</Text>
-                                <Text style={styles.WhiteFont}>Let See My Colors</Text>
-                              </Col>
-                              </Row>
-                            </Button>
-
-                            <Button rounded style={styles.button}
-                                    onPress={()=>this.test2Results('Warm Autumn')}>
-                              <Row>
-                              <Col>
-                                <Text style={styles.WhiteFont}> I am {this.state.questionSet.neutral[2].name}</Text>
-                                <Text style={styles.WhiteFont}>Let See My Colors</Text>
-                              </Col>
-                              </Row>
-                            </Button>
-                            
-                            <Button rounded style={styles.button}
-                                    onPress={()=>this.test2Results('Warm Spring')}>
-                              <Row>
-                              <Col>
-                                <Text style={styles.WhiteFont}> I am {this.state.questionSet.neutral[3].name}</Text>
-                                <Text style={styles.WhiteFont}>Let See My Colors</Text>
-                              </Col>
-                              </Row>
-                            </Button>
-
-                        </Col>
-                        </Row>
-                        </ScrollView> 
-                        
+                        <TouchableOpacity onPress={()=>this.test2Results('Cool Winter')}>
                         <Image style={styles.imageSize} 
                                source={this.state.questionSet.neutral[0].image}/>
+                               </TouchableOpacity>
+                        <TouchableOpacity onPress={()=>this.test2Results('Cool Summer')}>
                         <Image style={styles.imageSize} 
                                source={this.state.questionSet.neutral[1].image}/>
+                               </TouchableOpacity>
+                        <TouchableOpacity onPress={()=>this.test2Results('Warm Autumn')}>
                         <Image style={styles.imageSize} 
                                source={this.state.questionSet.neutral[2].image}/>
+                               </TouchableOpacity>
+                        <TouchableOpacity onPress={()=>this.test2Results('Warm Spring')}>
                         <Image style={styles.imageSize} 
                                source={this.state.questionSet.neutral[3].image}/>
-                   
+                               </TouchableOpacity>
                     </ScrollView>
                   </View>
               </ImageBackground>

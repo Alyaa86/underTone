@@ -51,6 +51,11 @@ export default observer(class FinalResults extends Component {
                <Image style={styles.imageSize} 
                source= {questionStore.finalResults}/> 
                </Lightbox>
+               <Lightbox swipeToDismiss= {true}>
+            
+               <Image style={styles.imageSize} 
+               source= {questionStore.finalResults}/> 
+               </Lightbox>
                
                <Footer style={styles.footer}>
                 <FooterTab>
