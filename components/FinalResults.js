@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import {  Link, Redirect } from 'react-router-native';
-import { ImageBackground, StyleSheet, Text, TextInput, View, Alert, CameraRoll, Dimensions, TouchableHighlight, AsyncStorage, } from 'react-native';
+import { ImageBackground, StyleSheet, Text, TextInput, View, Alert, CameraRoll, Dimensions, TouchableHighlight } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body, Right, Title, DeckSwiper} from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { ScrollView, Image} from 'react-native';
 import questionStore from '../stores/questionsStore'
 import { CheckBox } from 'react-native-elements'
 import HomePage from './HomePage.js';
+import { Footer, FooterTab } from 'native-base';
 import FadeInView from './FadeIn.js';
 import Results from './Results';
 import Lightbox from 'react-native-lightbox';
 import {observer} from 'mobx-react';
- import SaveImage from 'react-native-save-image';
- import { Constants, takeSnapshotAsync } from 'expo';
 
 
 
@@ -26,7 +25,9 @@ export default observer(class FinalResults extends Component {
         
     }
     
-    
+    saveImage() {
+    AsyncStorage.setItem('image', questionStore.finalResults)
+  }
 
     render(){  
     return (
@@ -51,22 +52,20 @@ export default observer(class FinalResults extends Component {
                source= {questionStore.finalResults}/> 
                </Lightbox>
                
+               <Footer style={styles.footer}>
+                <FooterTab>
+                  <Button>
+                    <Text style={styles.footerText}>⚠️ Press on the picture and screen capture 📸</Text>
+                  </Button>
+                </FooterTab>
+              </Footer>
             </FadeInView>
             
+
           </Content>
         </Container>
     );
   }
-
-  // _saveToCameraRollAsync = async () => {
-  //   let result = await takeSnapshotAsync(this._content, {
-  //     format: 'png',
-  //     result: questionStore.finalResults,
-  //   });
-
-  //   let saveResult = await CameraRoll.saveToCameraRoll(result, 'photo');
-  //   this.setState({ cameraRollUri: saveResult });
-  // };
 })
 
 const styles = StyleSheet.create({
@@ -83,5 +82,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: "center",
   },
+  footer:{
+    paddingBottom:25,
+    backgroundColor: '#c4b9c7'
+  },
+  footerText:{
+    fontSize:15,
+    fontWeight: 'bold',
+  }
 })
 

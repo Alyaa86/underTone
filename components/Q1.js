@@ -8,7 +8,6 @@ import { ScrollView, Image} from 'react-native';
 import questionStore from '../stores/questionsStore'
 import { CheckBox } from 'react-native-elements'
 import HomePage from './HomePage.js';
-import Modal from './InfoModal.js';
 import FadeInView from './FadeIn.js';
 import Results from './Results';
 
@@ -94,11 +93,13 @@ export default class Q1 extends React.Component {
 
   test1Results() {
     const countA = this.state.countA
+    const countB = this.state.countB
+
       if (countA > 5){
           return "Cool"
-        }else if (countA === 5){
+        }else if (countA === 5 || countB === 5 ){
           return "Neutral"
-        }else {
+        }else if (countA < 5){
           return "Warm"
         }
                  
@@ -130,8 +131,6 @@ export default class Q1 extends React.Component {
                         <Button rounded  style={styles.button} 
                             onPress={()=>this.nextButtonA()}>
                             <Text style={styles.WhiteFont}> {this.state.questionSet.A.name}</Text>
-                            <Text style={styles.WhiteFont}> {this.state.countA}</Text>
-
                         </Button>
                     
                     </View>
@@ -139,8 +138,6 @@ export default class Q1 extends React.Component {
                           <Button rounded style={styles.button}
                           onPress={()=>this.nextButtonB()}>
                             <Text style={styles.WhiteFont}> {this.state.questionSet.B.name}</Text>
-                            <Text style={styles.WhiteFont}> {this.state.countB}</Text>
-
                             </Button>
                     </View> 
               </View>
@@ -148,7 +145,7 @@ export default class Q1 extends React.Component {
               <Button transparent style={styles.chooseText}><Text style={styles.WhiteFont}>choose what makes your skin glow</Text></Button>
               </View>
               <View style={styles.buttonContainer}>
-              <Button transparent style={styles.chooseText}><Text adjustsFontSizeToFit={true} style={styles.WhiteFont}> ← scroll to choose → </Text></Button>
+              <Button transparent style={styles.chooseText}><Text adjustsFontSizeToFit={true} style={styles.WhiteFont}> 👈🏻 scroll to choose 👉🏻 </Text></Button>
               </View>
                 <View >
                     <ScrollView horizontal={true}
@@ -159,6 +156,7 @@ export default class Q1 extends React.Component {
                                source={this.state.questionSet.B.image}/>
                     </ScrollView>
                   </View>
+
               </ImageBackground>
               </FadeInView>
                 </Content>

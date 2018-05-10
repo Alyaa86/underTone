@@ -60,7 +60,7 @@ export default observer(class QWarm extends React.Component {
                   <Text adjustsFontSizeToFit={true} 
                   style={styles.WhiteFont}> choose what most looks like you</Text>
                   <Text adjustsFontSizeToFit={true} 
-                  style={styles.WhiteFont}> ← scroll to choose → </Text>
+                  style={styles.WhiteFont}> 👈🏻 scroll to choose 👉🏻 </Text>
                 </Col>
                 </Row>
               </Button>
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     margin: 10,
     flexDirection: 'row',
     justifyContent: 'center',
-    width: 350
+    width: 300
   },
   quarterHeight: {
     flex: .25,

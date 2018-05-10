@@ -60,7 +60,7 @@ export default observer(class QCool extends React.Component {
                   <Text adjustsFontSizeToFit={true} 
                   style={styles.WhiteFont}> choose what most looks like you</Text>
                   <Text adjustsFontSizeToFit={true} 
-                  style={styles.WhiteFont}> ← scroll to choose → </Text>
+                  style={styles.WhiteFont}> 👈🏻 scroll to choose 👉🏻 </Text>
                 </Col>
                 </Row>
               </Button>
